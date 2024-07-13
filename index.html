@@ -105,21 +105,24 @@
 
   <!-- navbar list -->
   <section data-name='listContainer'
-    class="container flex justify-between gap-3 mx-auto py-4 border-y-[0.063rem] border-[#EDEDED]">
+    class="hidden container mx-auto md:flex justify-between gap-2 lg:gap-3 py-4 border-y-[0.063rem] border-[#EDEDED]">
 
   </section>
 
   <!-- banner -->
-  <section class="container mx-auto pt-5">
+  <section class="hidden sm:block container mx-auto pt-5">
     <div class="h-80 rounded-xl bg-[#212844] relative">
 
-      <div class="flex flex-col gap-5 left-[5.625rem] top-[4.313rem] text-white absolute">
-        <p class="font-semibold text-3xl">Best Deal Online on smart watches</p>
-        <p class="font-bold text-6xl">SMART WEARABLE.</p>
-        <p class="font-semibold text-3xl">UP to 80% OFF</p>
+      <div
+        class="flex flex-col justify-center items-center gap-3 bottom-5 left-32 z-10 md:gap-5 md:left-[2.813rem] lg:left-[5.625rem] md:top-[4.313rem] text-white absolute">
+        <p class="font-semibold text-2xl lg:text-3xl">Best Deal Online on smart watches</p>
+        <p class="font-bold text-3xl lg:text-6xl">SMART WEARABLE.</p>
+        <p class="font-semibold text-2xl lg:text-3xl">UP to 80% OFF</p>
       </div>
       <div class="right-0 absolute">
-        <svg width="509" height="316" viewBox="0 0 509 316" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="w-[20rem] h-[10rem] 
+        md:w-[15.625rem] md:h-[9.375rem] 
+        lg:w-[31.813rem] lg:h-[19.75rem]" viewBox="0 0 509 316" fill="none" xmlns="http://www.w3.org/2000/svg">
           <mask id="mask0_105_1251" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="509"
             height="316">
             <path d="M0 0H493C501.837 0 509 7.16344 509 16V300C509 308.837 501.837 316 493 316H0V0Z" fill="#D9D9D9" />
@@ -132,7 +135,9 @@
           </g>
         </svg>
       </div>
-      <div class="w-[16.75rem] h-[16.875rem] right-[7.813rem] top-[1.438rem] absolute">
+      <div class="w-[8.438rem] h-[16.875rem] right-[40%] 
+        md:w-[16.75rem] md:right-[1.563rem] 
+        lg:right-[4.688rem] xl:right-[7.813rem] top-[1.438rem] absolute">
         <img src="/watch.png">
       </div>
 
@@ -142,7 +147,7 @@
   <!-- products-card -->
   <section class="container mx-auto">
 
-    <div class="mt-[4.25rem] flex justify-between">
+    <div class="mt-[4.25rem] flex justify-between px-1.5">
       <p class="font-bold text-2xl text-gray-500">Get the best <span class="text-primary">Products</span></p>
       <p class="flex justify-center items-center font-medium text-base">View All
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -157,7 +162,9 @@
       <hr>
     </div>
 
-    <div id="products" class="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+    <div id="products" class="mt-10 grid grid-cols-1 
+    sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 
+    gap-5 justify-items-center">
 
       <!-- Sample -->
       <!-- <div class="w-60 h-80 card card-compact bg-base-100 shadow-xl relative">
@@ -184,11 +191,13 @@
   <!-- footer -->
   <section class="bg-[#4A00FF]">
     <section class="container mx-auto">
-      <div class="flex flex-col gap-20 mt-24 pt-20 pb-8 pl-[7.5rem] pr-[7.5rem] bg-[#4A00FF] text-white">
+      <div class="flex flex-col gap-20 mt-24 pt-20 pb-8 
+      pl-[3.75rem] lg:pl-[3.75rem] pr-[3.75rem] lg:pr-[7.5rem] bg-[#4A00FF] text-white">
 
-        <div class="flex gap-24">
+        <div class="flex flex-col sm:flex-row gap-10 lg:gap-24">
           <div class="flex flex-col gap-9">
-            <svg width="217" height="44" viewBox="0 0 217 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg class="w-[9.375rem] h-8 lg:w-[13.563rem] lg:h-11" viewBox="0 0 217 44" fill="none"
+              xmlns="http://www.w3.org/2000/</svg>svg">
               <path
                 d="M25.8074 0.18585L16.945 23.5333L8.08255 0.18585H0V33.0116H5.7665V8.50264L14.0381 30.1542H19.8519L28.1235 8.50264V33.0116H33.89V0.18585H25.8074Z"
                 fill="white" />
@@ -217,7 +226,7 @@
 
             <div class="flex flex-col gap-5">
 
-              <p class="font-bold text-xl">Contact Us</p>
+              <p class="font-bold text-lg lg:text-xl">Contact Us</p>
 
               <div class="flex gap-3">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -229,9 +238,9 @@
                     fill="white" />
                 </svg>
 
-                <div class="flex flex-col gap-0.5">
-                  <p class="font-medium text-base">Whats App</p>
-                  <p class="font-semibold text-base">+1 202-918-2132</p>
+                <div class="flex flex-col gap-0.5 text-sm lg:text-base">
+                  <p class="font-medium">Whats App</p>
+                  <p class="font-semibold">+1 202-918-2132</p>
                 </div>
               </div>
 
@@ -245,18 +254,18 @@
                 </svg>
 
 
-                <div class="flex flex-col gap-0.5">
-                  <p class="font-medium text-base">Call Us</p>
-                  <p class="font-semibold text-base">+1 202-918-2132</p>
+                <div class="flex flex-col gap-0.5 text-sm lg:text-base">
+                  <p class="font-medium">Call Us</p>
+                  <p class="font-semibold">+1 202-918-2132</p>
                 </div>
               </div>
             </div>
 
             <div class="flex flex-col gap-5">
-              <p class="font-bold text-xl">Download App</p>
+              <p class="font-bold text-lg lg:text-xl">Download App</p>
               <div class="flex gap-5">
-                <svg width="167" height="55" viewBox="0 0 167 55" fill="none" xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink">
+                <svg class="w-[7.813rem] lg:w-[10.438rem] h-[3.438rem]" viewBox="0 0 167 55" fill="none"
+                  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <rect width="167" height="55" fill="url(#pattern0_103_31)" />
                   <defs>
                     <pattern id="pattern0_103_31" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -267,8 +276,8 @@
                   </defs>
                 </svg>
 
-                <svg width="191" height="56" viewBox="0 0 191 56" fill="none" xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink">
+                <svg width="191" height="56" class="w-[9.375rem] lg:w-[11.938rem] h-[3.438rem]" viewBox="0 0 191 56"
+                  fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <rect width="191" height="56" fill="url(#pattern0_103_30)" />
                   <defs>
                     <pattern id="pattern0_103_30" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -283,13 +292,13 @@
 
           </div>
 
-          <div class="flex gap-[3.688rem]">
+          <div class="flex gap-5 lg:gap-[3.688rem]">
 
             <div class="flex flex-col gap-4">
-              <p class="font-semibold text-xl">Most Popular Categories</p>
+              <p class="font-semibold text-base lg:text-xl">Most Popular Categories</p>
               <hr class="border-2 rounded-md w-11/12">
               <div class="py-3 pl-6">
-                <ul class="list-disc font-medium text-base grid gap-4">
+                <ul class="list-disc font-medium text-sm lg:text-base grid gap-4">
                   <li>Staples</li>
                   <li>Beverages</li>
                   <li>Personal Care</li>
@@ -303,10 +312,10 @@
             </div>
 
             <div class="flex flex-col gap-4">
-              <p class="font-semibold text-xl">Customer Services</p>
+              <p class="font-semibold text-base lg:text-xl">Customer Services</p>
               <hr class="border-2 rounded-md w-11/12">
               <div class="py-3 pl-6">
-                <ul class="list-disc font-medium text-base grid gap-4">
+                <ul class="list-disc font-medium text-sm lg:text-base grid gap-4">
                   <li>About Us</li>
                   <li>Terms & Conditions</li>
                   <li>FAQ</li>

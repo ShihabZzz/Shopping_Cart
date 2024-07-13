@@ -107,7 +107,7 @@ let list = async () => {
             dropdown.classList.add('dropdown', 'dropdown-bottom', 'dropdown-end');
 
             summary = document.createElement('summary');
-            summary.classList.add('btn', 'btn-sm', 'rounded-full', 'm-1');
+            summary.classList.add('btn', 'btn-xs', 'lg:btn-sm', 'rounded-full', 'm-1');
             summary.textContent = 'More';
 
             const downArrowSvg = downArrow();
@@ -121,7 +121,7 @@ let list = async () => {
         result.forEach((element, index) => {
             if (index < 7) {
                 const btTag = document.createElement('button');
-                btTag.classList.add('btn', 'btn-sm', 'rounded-full');
+                btTag.classList.add('btn', 'btn-xs', 'lg:btn-sm', 'rounded-full', 'm-1');
                 btTag.innerText = element;
                 listContainer.appendChild(btTag);
             }
