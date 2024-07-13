@@ -1,71 +1,158 @@
 import './styles.css'
 import { cartCountRender, cart } from './utils';
+import { downArrow } from './svgUtils';
 
+let defaultCategory = '';
 const limit = 5;
+const listContainer = document.querySelector('section[data-name="listContainer"]');
 
-let products = async () => {
-    const ep = await fetch(`https://dummyjson.com/products?limit=${limit}`);
-    if (!ep.ok)
-        throw new Error(`Error Fetching Products: ${ep.statusText}`);
-    const res = await ep.json();
-    const productsContainer = document.getElementById('products');
+let products = async (categoryName) => {
+    const url = `https://dummyjson.com/products/category/${categoryName}?limit=${limit}`;
+    const reqOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
 
-    for (let i = 0; i < res.products.length; i++) {
-        const content = document.createElement('div');
-        content.classList.add('w-60', 'h-80', 'card', 'card-compact', 'bg-base-100', 'shadow-xl', 'relative');
-
-        // thumbnail
-        const contentFigure = document.createElement('figure');
-        const figureImg = document.createElement('img');
-        figureImg.src = `${res.products[i].thumbnail}`;
-        figureImg.alt = `${res.products[i].title}`;
-        contentFigure.appendChild(figureImg);
-
-        // discount
-        const contentDiscount = document.createElement('div');
-        contentDiscount.classList.add('absolute', 'flex', 'items-center', 'w-14', 'h-14', 'top-0',
-            'right-0', 'rounded-tr-2xl', 'rounded-bl-2xl', 'font-semibold', 'text-center',
-            'text-white', 'bg-primary');
-        contentDiscount.textContent = `${res.products[i].discountPercentage}% OFF`;
-
-        const contentBody = document.createElement('div');
-        contentBody.classList.add('card-body');
-        // title
-        const contentBodyTitle = document.createElement('h2');
-        contentBodyTitle.classList.add('card-title');
-        contentBodyTitle.textContent = `${res.products[i].title}`;
-        contentBody.appendChild(contentBodyTitle);
-        // description
-        const contentBodyDescription = document.createElement('p');
-        contentBodyDescription.textContent = `${res.products[i].description}`;
-        contentBody.appendChild(contentBodyDescription);
-        // price
-        const contentBodyPrice = document.createElement('p');
-        contentBodyPrice.textContent = `$${res.products[i].price}`;
-        contentBody.appendChild(contentBodyPrice);
-        // Add to cart
-        const contentBodyCart = document.createElement('div');
-        contentBodyCart.classList.add('card-actions', 'justify-end');
-        const contentBodyCartButton = document.createElement('button');
-        contentBodyCartButton.classList.add('btn', 'btn-sm', 'btn-primary');
-        contentBodyCartButton.textContent = 'Add to Cart';
-        contentBodyCartButton.id = res.products[i].id;
-
-        contentBodyCart.appendChild(contentBodyCartButton);
-        contentBody.appendChild(contentBodyCart);
-
-        content.appendChild(contentFigure);
-        content.appendChild(contentDiscount);
-        content.appendChild(contentBody);
-        productsContainer.appendChild(content);
-    }
-    productsContainer.addEventListener('click', (e) => {
-        e.stopImmediatePropagation();
-        if (e.target.tagName === 'BUTTON') {
-            cart(e.target.id);
+    try {
+        const ep = await fetch(url, reqOptions);
+        if (!ep.ok) {
+            const error = new Error('Unexpected Erorr:')
+            error.status = ep.status;
+            throw error;
         }
-    });
+        const result = await ep.json();
+
+        const productsContainer = document.getElementById('products');
+        productsContainer.innerText = '';
+        for (let i = 0; i < result.products.length; i++) {
+            const content = document.createElement('div');
+            content.classList.add('w-60', 'h-80', 'card', 'card-compact', 'bg-base-100', 'shadow-xl', 'relative');
+
+            // thumbnail
+            const contentFigure = document.createElement('figure');
+            const figureImg = document.createElement('img');
+            figureImg.src = `${result.products[i].thumbnail}`;
+            figureImg.alt = `${result.products[i].title}`;
+            contentFigure.appendChild(figureImg);
+
+            // discount
+            const contentDiscount = document.createElement('div');
+            contentDiscount.classList.add('absolute', 'flex', 'items-center', 'w-14', 'h-14', 'top-0',
+                'right-0', 'rounded-tr-2xl', 'rounded-bl-2xl', 'font-semibold', 'text-center',
+                'text-white', 'bg-primary');
+            contentDiscount.textContent = `${result.products[i].discountPercentage}% OFF`;
+
+            const contentBody = document.createElement('div');
+            contentBody.classList.add('card-body');
+            // title
+            const contentBodyTitle = document.createElement('h2');
+            contentBodyTitle.classList.add('card-title');
+            contentBodyTitle.textContent = `${result.products[i].title}`;
+            contentBody.appendChild(contentBodyTitle);
+            // description
+            const contentBodyDescription = document.createElement('p');
+            contentBodyDescription.textContent = `${result.products[i].description}`;
+            contentBody.appendChild(contentBodyDescription);
+            // price
+            const contentBodyPrice = document.createElement('p');
+            contentBodyPrice.textContent = `$${result.products[i].price}`;
+            contentBody.appendChild(contentBodyPrice);
+            // Add to cart
+            const contentBodyCart = document.createElement('div');
+            contentBodyCart.classList.add('card-actions', 'justify-end');
+            const contentBodyCartButton = document.createElement('button');
+            contentBodyCartButton.classList.add('btn', 'btn-sm', 'btn-primary');
+            contentBodyCartButton.textContent = 'Add to Cart';
+            contentBodyCartButton.id = result.products[i].id;
+
+            contentBodyCart.appendChild(contentBodyCartButton);
+            contentBody.appendChild(contentBodyCart);
+
+            content.appendChild(contentFigure);
+            content.appendChild(contentDiscount);
+            content.appendChild(contentBody);
+            productsContainer.appendChild(content);
+        }
+        productsContainer.addEventListener('click', (event) => {
+            event.stopImmediatePropagation();
+            if (event.target.tagName === 'BUTTON') {
+                cart(event.target.id);
+            }
+        });
+    } catch (error) {
+        console.error(error.message, error.status);
+    }
 }
 
+let list = async () => {
+    const url = `https://dummyjson.com/products/category-list`
+    const reqOptions = {
+        method: 'GET',
+        redirect: 'follow'
+    };
+    try {
+        const ep = await fetch(url, reqOptions);
+        if (!ep.ok) {
+            const error = new Error('Unexpected Erorr:')
+            error.status = ep.status;
+            throw error;
+        }
+        const result = await ep.json();
+        defaultCategory = result[0];
+        products(defaultCategory);
+
+        let dropdown, summary, ul;
+        if (result.length > 8) {
+            dropdown = document.createElement('details');
+            dropdown.classList.add('dropdown', 'dropdown-bottom', 'dropdown-end');
+
+            summary = document.createElement('summary');
+            summary.classList.add('btn', 'btn-sm', 'rounded-full', 'm-1');
+            summary.textContent = 'More';
+
+            const downArrowSvg = downArrow();
+            summary.appendChild(downArrowSvg);
+
+            ul = document.createElement('ul');
+            ul.classList.add('menu', 'dropdown-content', 'bg-base-100',
+                'rounded-box', 'z-[1]', 'w-max', 'max-h-[40vh]', 'overflow-auto', 'p-2', 'shadow');
+        }
+
+        result.forEach((element, index) => {
+            if (index < 7) {
+                const btTag = document.createElement('button');
+                btTag.classList.add('btn', 'btn-sm', 'rounded-full');
+                btTag.innerText = element;
+                listContainer.appendChild(btTag);
+            }
+            if (result.length > 8) {
+                const li = document.createElement('li');
+                li.classList.add('font-medium', 'text-sm');
+                const a = document.createElement('a');
+                a.textContent = `${element}`;
+                li.appendChild(a);
+
+                ul.appendChild(li);
+            }
+        });
+        if (result.length > 8) {
+            dropdown.appendChild(summary);
+            dropdown.appendChild(ul);
+            listContainer.appendChild(dropdown);
+        }
+
+        listContainer.addEventListener('click', (event) => {
+            event.stopImmediatePropagation();
+            if (event.target.tagName === 'BUTTON' || event.target.tagName === 'A') {
+                products(event.target.textContent);
+            }
+        });
+
+    } catch (error) {
+        console.error(error.message, error.status);
+    }
+}
+
+
+list();
 cartCountRender();
-products();
