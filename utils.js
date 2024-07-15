@@ -2,7 +2,9 @@ let cartTotal = Number(localStorage.getItem('cartTotal')) || Number(0);
 
 export function cartCountRender() {
     const cartCountView = document.getElementById('cart-count');
+    const cartCountViewMobile = document.getElementById('cart-count-mobile');
     cartCountView.textContent = cartTotal;
+    cartCountViewMobile.textContent = cartTotal;
 }
 
 export async function cart(id) {
