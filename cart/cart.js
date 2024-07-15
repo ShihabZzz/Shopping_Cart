@@ -65,7 +65,7 @@ for (let i = 0; i < cart.length; i++) {
     totalDiscount += Number(cart[i].discountAmount);
 }
 
-let paidAmount = (61.99 + Number(totalAmount) - Number(totalDiscount)).toFixed(2);
+let paidAmount = (61.99 + Number(totalAmount) - Number(totalDiscount));
 
 const cartTotals = document.getElementById('cart-totals');
 // Create the main div
@@ -90,7 +90,7 @@ function createRow(label, value) {
 // Create and append rows to the main div
 mainDiv.appendChild(createRow('Sub-total', `$${totalAmount}`));
 mainDiv.appendChild(createRow('Shipping', 'Free'));
-mainDiv.appendChild(createRow('Discount', `$${totalDiscount}`));
+mainDiv.appendChild(createRow('Discount', `$${totalDiscount.toFixed(2)}`));
 mainDiv.appendChild(createRow('Tax', '$61.99'));
 
 // Append main div to container
@@ -107,7 +107,7 @@ const totalLabel = document.createElement('span');
 totalLabel.textContent = 'Total';
 const totalValue = document.createElement('span');
 totalValue.classList.add('font-medium');
-totalValue.textContent = `$${paidAmount}`;
+totalValue.textContent = `$${paidAmount.toFixed(2)}`;
 totalDiv.appendChild(totalLabel);
 totalDiv.appendChild(totalValue);
 cartTotals.appendChild(totalDiv);
