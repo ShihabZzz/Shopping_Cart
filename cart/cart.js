@@ -15,10 +15,11 @@ for (let i = 0; i < cart.length; i++) {
 
     // Create first table data cell
     const td1 = document.createElement('td');
+    td1.classList.add('p-1');
     const div1 = document.createElement('div');
     div1.classList.add('flex', 'items-center', 'gap-3');
     const avatarDiv = document.createElement('div');
-    avatarDiv.classList.add('avatar');
+    avatarDiv.classList.add('hidden', 'sm:avatar');
     const maskDiv = document.createElement('div');
     maskDiv.classList.add('mask', 'mask-squircle', 'w-12', 'h-12');
     const img = document.createElement('img');
@@ -28,7 +29,7 @@ for (let i = 0; i < cart.length; i++) {
     avatarDiv.appendChild(maskDiv);
     const fontBoldDiv = document.createElement('div');
     const fontBoldText = document.createElement('div');
-    fontBoldText.classList.add('font-bold');
+    fontBoldText.classList.add('text-sm', 'sm:text-base', 'font-semibold');
     fontBoldText.textContent = cart[i].title;
     fontBoldDiv.appendChild(fontBoldText);
     div1.appendChild(avatarDiv);
@@ -37,19 +38,22 @@ for (let i = 0; i < cart.length; i++) {
 
     // Create second table data cell
     const td2 = document.createElement('td');
+    td2.classList.add('p-1', 'text-center');
     td2.textContent = cart[i].price;
 
     // Create third table data cell
     const td3 = document.createElement('td');
+    td3.classList.add('p-1');
     const input = document.createElement('input');
     input.type = "number";
     input.placeholder = "Type here";
     input.value = cart[i].quantity;
-    input.classList.add('input', 'input-bordered', 'input-md');
+    input.classList.add('input', 'w-full', 'input-md', 'input-bordered', 'text-center');
     td3.appendChild(input);
 
     // Create fourth table data cell
     const td4 = document.createElement('td');
+    td4.classList.add('p-1', 'text-center');
     td4.textContent = cart[i].subTotal;
 
     // Append all td elements to tr
@@ -114,7 +118,8 @@ cartTotals.appendChild(totalDiv);
 
 // Create and append the button
 const button = document.createElement('button');
-button.classList.add('btn', 'btn-success', 'font-bold', 'text-white');
+button.classList.add('btn', 'btn-success',
+    'font-bold', 'text-white');
 button.textContent = 'Proceed to Checkout';
 cartTotals.appendChild(button);
 

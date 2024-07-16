@@ -10,7 +10,7 @@
 
 <body>
   <header class="container mx-auto">
-    <div class="navbar bg-base-100">
+    <div class="navbar bg-base-100 p-1">
       <div class="flex-1">
         <a href="../index.html" class="btn btn-ghost text-xl">MegaMart</a>
       </div>
@@ -103,18 +103,18 @@
   </header>
 
   <section class="container mx-auto">
-    <div class="grid grid-cols-3 gap-5">
-      <div class="col-span-2">
-        <div class="card card-body shadow-xl">
+    <div class="grid lg:grid-cols-3 gap-5">
+      <div class="lg:col-span-2 max-w-full">
+        <div class="card card-body shadow-xl p-5">
           <h2 class="card-title">Shopping Cart</h2>
           <table class="table">
             <!-- head -->
             <thead>
-              <tr>
-                <th>Products</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Sub-Total</th>
+              <tr class="text-center">
+                <th class="p-1 sm:p-3 lg:p-4">Products</th>
+                <th class="p-1 sm:p-3 lg:p-4">Price</th>
+                <th class="p-1 sm:p-3 lg:p-4">Quantity</th>
+                <th class="p-1 sm:p-3 lg:p-4">Sub-Total</th>
               </tr>
             </thead>
             <tbody>
@@ -149,7 +149,7 @@
         </div>
       </div>
 
-      <div id="cart-totals" class="card card-body shadow-xl">
+      <div id="cart-totals" class="card max-w-full card-body shadow-xl">
         <h2 class="card-title">Cart Totals</h2>
 
         <!-- Cart-Totals -->
