@@ -4,10 +4,16 @@ import { downArrow } from './svgUtils';
 
 let defaultCategory = '';
 const limit = 5;
+let skip = 0;
+let total = 0;
 const listContainer = document.querySelector('section[data-name="listContainer"]');
+const prev = document.getElementById('prev');
+const next = document.getElementById('next');
 
-let products = async (categoryName) => {
-    const url = `https://dummyjson.com/products/category/${categoryName}?limit=${limit}`;
+let products = async (categoryName, skip) => {
+    let url = `https://dummyjson.com/products/category/${categoryName}?limit=${limit}`;
+    if (skip)
+        url += `&skip=${skip}`;
     const reqOptions = {
         method: 'GET',
         redirect: 'follow'
@@ -21,6 +27,7 @@ let products = async (categoryName) => {
             throw error;
         }
         const result = await ep.json();
+        total = result.total;
 
         const productsContainer = document.getElementById('products');
         productsContainer.innerText = '';
@@ -144,6 +151,7 @@ let list = async () => {
         listContainer.addEventListener('click', (event) => {
             event.stopImmediatePropagation();
             if (event.target.tagName === 'BUTTON' || event.target.tagName === 'A') {
+                defaultCategory = event.target.textContent;
                 products(event.target.textContent);
             }
         });
@@ -152,6 +160,22 @@ let list = async () => {
         console.error(error.message, error.status);
     }
 }
+
+prev.addEventListener('click', () => {
+    if (skip - 5 < 0) {
+        return;
+    }
+    skip -= limit;
+    products(defaultCategory, skip);
+});
+
+next.addEventListener('click', () => {
+    if (skip + 5 >= total) {
+        return;
+    }
+    skip += limit
+    products(defaultCategory, skip);
+});
 
 
 list();
